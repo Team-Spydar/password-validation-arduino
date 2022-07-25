@@ -1,4 +1,4 @@
-char pwdInput;
+string pwdInput;
  
 void setup() {
     Serial.begin (9600);
@@ -13,12 +13,20 @@ void loop() {
         delay(3000);
 
         pwdInput = Serial.read();
-        if(sizeof(pwdInput) < 8) {
+        while(sizeof(pwdInput) < 8) {
             Serial.println ("----------PASSWORD MUST NOT BE LESS THAN 8 CHARACTERS----------");
-        } else if(!isDigit(pwdInput)){
-            Serial.println ("----------PASSWORD MUST CONTAIN AT LEAST ONE NUMBER----------");
-        } else {
-            Serial.println ("----------LOGGED IN----------");
+        } 
+
+        checkForNumberInString()
+    }
+}
+
+void checkForNumberInString(){
+    for(i=0, i<pwdInput.length(), i++){
+        if(!isDigit(pwdInput[i])){
+            Serial.println ("---------- PASSWORD MUST CONTAIN AT LEAST ONE NUMBER ----------");
+        } else{
+            Serial.println ("---------- VALID ----------");
         }
     }
 }
