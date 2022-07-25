@@ -20,24 +20,22 @@ void loop() {
 
     if(Serial.available() > 0){
         delay(3000);
-           digitalWrite (redled, HIGH);
-           delay (50);
-           digitalWrite (redled, LOW);
-           delay (50);
+        digitalWrite (redled, HIGH);
+        delay (50);
+        digitalWrite (redled, LOW);
+        delay (50);
  
         pwdInput = Serial.read();
          //delay (2000); 
            
         if(sizeof(pwdInput) < 8) {
             Serial.println (" PASSWORD MUST NOT BE LESS THAN 8 CHARACTERS ");
-        } if(isDigit(pwdInput)){
-            Serial.println (" ---------- PASSWORD SAVED ---------- ");
+        } else if(!isDigit(pwdInput)){
+             Serial.println (" ---------- PASSWORD MUST CONTAIN AT LEAST ONE NUMBER ---------- ");
              digitalWrite (redled, LOW);
              digitalWrite (greenled, HIGH);
         } else {
-            Serial.println (" PASSWORD MUST CONTAIN AT LEAST ONE NUMBER ");
-            
-         
+            Serial.println ("-------------------------------- LOGGED IN --------------------------------");
         }
     }
 }
