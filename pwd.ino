@@ -10,6 +10,8 @@ void setup() {
  
 void loop() {
     if(Serial.available()){
+        delay(3000);
+
         pwdInput = Serial.read();
         if(sizeof(pwdInput) < 8) {
             Serial.println ("----------PASSWORD MUST NOT BE LESS THAN 8 CHARACTERS----------");
